@@ -8,6 +8,7 @@ var express      = require('express'),
     MONGOURI     = process.env.MONGOLAB_URI || "mongodb://localhost:27017",
     dbname       = "reddit",
     mongoose     = require('mongoose'),
+    passport     = require('passport');
 
 mongoose.connect(MONGOURI + "/" + dbname);
 
@@ -15,6 +16,10 @@ mongoose.connect(MONGOURI + "/" + dbname);
 require('./models/post');
 require('./models/comment');
 require('./models/user');
+
+// passport configuration
+require('./config/passport');
+
 // all routes
 var routes = require('./routes/index');
 
@@ -29,6 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 app.use('/', routes);
 
