@@ -29,6 +29,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
 app.factory('auth', ['$http', '$window', function ($http, $window) {
   var auth = {};
 
+  auth.saveToken = function (token) {
+    $window.localStorage['mean-reddit-token'] = token;
+  };
+
+  auth.getToken = function () {
+    return $window.localStorage['mean-reddit-token'];
+  };
 
   return auth;
 }]);
