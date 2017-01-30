@@ -122,6 +122,25 @@ app.factory('posts', ['$http', 'auth', function ($http, auth) {
   return o;
 }]);
 
+app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state, auth){
+  $scope.user = {};
+
+  $scope.register = function(){
+    auth.register($scope.user).error(function(error){
+      $scope.error = error;
+    }).then(function(){
+      $state.go('home');
+    });
+  };
+
+  $scope.logIn = function(){
+    auth.logIn($scope.user).error(function(error){
+      $scope.error = error;
+    }).then(function(){
+      $state.go('home');
+    });
+  };
+}]);
 
 app.controller('MainCtrl', ['$scope','posts', function ($scope, posts) {
   $scope.posts = posts.posts;
@@ -174,5 +193,4 @@ app.controller('PostsCtrl', ['$scope', 'posts', 'post', function ($scope, posts,
   $scope.incComDownvotes = function (comment) {
     posts.downvoteComment(post, comment);
   };
-
 }]);
