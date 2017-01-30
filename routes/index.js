@@ -1,5 +1,7 @@
 var express  = require('express'),
     router   = express.Router(),
+    jwt      = require('express-jwt'),
+    auth     = jwt({ secret: 'SECRET', userProperty: 'payload' }),
     mongoose = require('mongoose'),
     passport = require('passport'),
     Post     = mongoose.model('Post'),
