@@ -11,6 +11,23 @@
     <script type="text/javascript" src="/javascripts/angularApp.js"></script>
   </head>
   <body>
+    <header class="navbar navbar-default navbar-fixed-top" ng-controller="NavCtrl" role="navigation">
+      <div class="navbar-inner">
+        <div class="container">
+          <div id="logo" class="navbar-brand">
+            <a href="/#/home">MEAN Reddit</a>
+          </div>
+          <nav class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+              <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+              <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+              <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
 
     <div id="main_content" class="container">
       <div id="content" class="col-md-9 center-block">
