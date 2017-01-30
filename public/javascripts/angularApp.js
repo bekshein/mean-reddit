@@ -16,9 +16,19 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     $urlRouterProvider.otherwise('home');
 }]);
 
-app.factory('posts', [function () {
+app.factory('posts', ['$http', function ($http) {
   var o = {
     posts: []
+  };
+  o.getAll = function () {
+    return $http.get('/posts').success(function (data) {
+      angular.copy(data, o.posts);
+    });
+  };
+  o.get = function (id) {
+    return $http.get('/posts/' + id).then(function (res) {
+      return res.data;
+    });
   };
   return o;
 }]);
