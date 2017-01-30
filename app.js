@@ -1,11 +1,15 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express      = require('express'),
+    app          = express(),
+    path         = require('path'),
+    favicon      = require('serve-favicon'),
+    logger       = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser   = require('body-parser'),
+    MONGOURI     = process.env.MONGOLAB_URI || "mongodb://localhost:27017",
+    dbname       = "reddit",
+    mongoose     = require('mongoose'),
 
-var app = express();
+mongoose.connect(MONGOURI + "/" + dbname);
 
 // all routes
 var routes = require('./routes/index');
