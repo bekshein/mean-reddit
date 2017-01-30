@@ -43,6 +43,18 @@ router.param('post', function (req, res, next, id) {
   });
 });
 
+// middleware function to preload comment object to handle comment ID routes (will retrieve and attach comment object to the req object for route handlers with :comment route parameter)
+router.param('comment', function (req, res, next, id) {
+  var query = Comment.findById(id);
+
+  query.exec(function (err, comment) {
+    if (err) { return next(err); }
+    if (!comment) { return next(new Error('can\'t find comment')); }
+
+    req.comment = comment;
+    return next();
+  });
+});
 
 // show post by id
 router.get('/posts/:post', function (req, res) {
