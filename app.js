@@ -14,6 +14,7 @@ mongoose.connect(MONGOURI + "/" + dbname);
 // mongoose model registers
 require('./models/post');
 require('./models/comment');
+require('./models/user');
 // all routes
 var routes = require('./routes/index');
 
