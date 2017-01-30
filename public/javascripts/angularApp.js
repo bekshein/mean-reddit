@@ -162,7 +162,13 @@ app.controller('AuthCtrl', ['$scope', '$state', 'auth', function($scope, $state,
   };
 }]);
 
-app.controller('MainCtrl', ['$scope','posts', function ($scope, posts) {
+app.controller('NavCtrl', ['$scope', 'auth', function ($scope, auth) {
+  $scope.isLoggedIn = auth.isLoggedIn;
+  $scope.currentUser = auth.currentUser;
+  $scope.logOut = auth.logOut;
+}]);
+
+app.controller('MainCtrl', ['$scope', 'posts', 'auth', function ($scope, posts, auth) {
   $scope.posts = posts.posts;
 
   $scope.addPost = function () {
