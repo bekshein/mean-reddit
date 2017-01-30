@@ -57,6 +57,23 @@ app.factory('auth', ['$http', '$window', function ($http, $window) {
       return payload.username;
     }
   };
+
+  auth.register = function (user) {
+    return $http.post('/register', user).success(function (data) {
+      auth.saveToken(data.token);
+    });
+  };
+
+  auth.logIn = function (user) {
+    return $http.post('/login', user).success(function (data) {
+      auth.saveToken(data.token);
+    });
+  };
+
+  auth.logOut = function () {
+    $window.localStorage.removeItem('mean-reddit-token');
+  };
+
   return auth;
 }]);
 
