@@ -11,7 +11,12 @@
     <script type="text/javascript" src="/javascripts/angularApp.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <div id="main_content" class="container">
+      <div id="content" class="col-md-9 center-block">
+        <ui-view></ui-view>
+      </div>
+    </div>
+
   </body>
 </html>
