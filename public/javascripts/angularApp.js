@@ -30,6 +30,11 @@ app.factory('posts', ['$http', function ($http) {
       return res.data;
     });
   };
+  o.create = function (post) {
+    return $http.post('/posts', post).success(function (data) {
+      o.posts.push(data);
+    });
+  };
   return o;
 }]);
 
@@ -37,6 +42,15 @@ app.factory('posts', ['$http', function ($http) {
 app.controller('MainCtrl', ['$scope','posts', function ($scope, posts) {
   $scope.posts = posts.posts;
 
+  $scope.addPost = function () {
+    if (!$scope.title || $scope.title === '') { return; }
+    posts.create({
+      title: $scope.title,
+      link: $scope.link,
+    });
+    $scope.title = '';
+    $scope.link = '';
+  };
 }]);
 
 app.controller('PostsCtrl', ['$scope', 'posts', function ($scope, posts) {
