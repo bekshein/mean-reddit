@@ -183,6 +183,8 @@ app.controller('NavCtrl', ['$scope', 'auth', function ($scope, auth) {
 app.controller('MainCtrl', ['$scope', 'posts', 'auth', function ($scope, posts, auth) {
   $scope.posts = posts.posts;
 
+  $scope.isLoggedIn = auth.isLoggedIn;
+
   $scope.addPost = function () {
     if (!$scope.title || $scope.title === '') { return; }
     posts.create({
@@ -204,6 +206,8 @@ app.controller('MainCtrl', ['$scope', 'posts', 'auth', function ($scope, posts, 
 
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth', function ($scope, posts, post, auth) {
   $scope.post = post;
+
+  $scope.isLoggedIn = auth.isLoggedIn;
 
   $scope.addComment = function () {
     if (!$scope.body || $scope.body === '') { return; }
