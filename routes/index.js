@@ -59,6 +59,7 @@ router.get('/posts', function (req, res, next) {
 // create and save new post
 router.post('/posts', auth, function (req, res, next) {
   var newPost = new Post(req.body);
+  newPost.author = req.payload.username;
 
   newPost.save(function (err, post) {
     if (err) { return next(err); }
@@ -124,6 +125,7 @@ router.put('/posts/:post/downvote', auth, function (req, res, next) {
 router.post('/posts/:post/comments', auth, function (req, res, next) {
   var newComment = new Comment(req.body);
   newComment.post = req.post;
+  newComment.author = req.payload.username;
 
   newComment.save(function (err, comment) {
     if (err) { return next(err); }
