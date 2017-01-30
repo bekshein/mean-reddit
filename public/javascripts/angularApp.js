@@ -26,7 +26,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     $urlRouterProvider.otherwise('home');
 }]);
 
-app.factory('posts', ['$http', function ($http) {
+app.factory('auth', ['$http', '$window', function ($http, $window) {
+  var auth = {};
+
+
+  return auth;
+}]);
+
+app.factory('posts', ['$http', 'auth', function ($http, auth) {
   var o = {
     posts: []
   };
