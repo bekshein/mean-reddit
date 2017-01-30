@@ -40,6 +40,50 @@
           </a>
         </div>
       </div>
+    <script type="text/ng-template" id="/posts.html">
+      <div class="page-header">
+        <h2>
+          <a ng-show="post.link" href="{{post.link}}" target="_blank">{{post.title}}</a>
+          <span ng-hide="post.link">{{post.title}}</span><br>
+          <small ng-show="post.author" class="author">posted by {{post.author}}</small>
+        </h2>
+      </div>
+
+      <div class="btn-group">
+        <a ng-show="post.link" class="btn btn-primary btn-sm" href="{{post.link}}" target="_blank">Visit Link</a>
+      </div>
+      <div class="btn-group">
+        <a ng-click="incUpvotes(post)" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-chevron-up"></span>
+          {{post.upvotes}} Upvotes
+        </a>
+        <a ng-click="incDownvotes(post)" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-chevron-down"></span>
+          {{post.downvotes}} Downvotes
+        </a>
+      </div>
+
+      <h3 class="comments_title">
+        {{post.comments.length}} Comments
+      </h3>
+
+      <div id="comments" ng-repeat="comment in post.comments | orderBy: '-upvotes'">
+        <div class="comment wrapper clearfix">
+          <div class="btn-group">
+            <a ng-click="incComUpvotes(comment)" class="btn btn-default btn-xs">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              {{comment.upvotes}}
+            </a>
+            <a ng-click="incComDownvotes(comment)" class="btn btn-default btn-xs">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              {{comment.downvotes}}
+            </a>
+          </div>
+          <p class="lead">{{comment.body}}</p>
+          <p><small>Submitted on <strong>{{comment.date | date: "short"}}</strong> by {{comment.author}}</small></p>
+        </div>
+      </div>
+    </script>
     </script>
   </body>
 </html>
