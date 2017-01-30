@@ -99,4 +99,23 @@ router.post('/posts/:post/comments', function (req, res, next) {
     });
   });
 });
+
+// update comment by id using upvote method from Comment model (route hits server, runs method and returns back to client)
+router.put('/posts/:post/comments/:comment/upvote', function (req, res, next) {
+  req.comment.upvote(function (err, comment) {
+    if (err) { return next(err); }
+
+    res.json(comment);
+  });
+});
+
+// update comment by id using downvote method from Comment model (route hits server, runs method and returns back to client)
+router.put('/posts/:post/comments/:comment/downvote', function (req, res, next) {
+  req.comment.downvote(function (err, comment) {
+    if (err) { return next(err); }
+
+    res.json(comment);
+  });
+});
+
 module.exports = router;
