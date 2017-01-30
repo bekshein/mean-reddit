@@ -37,6 +37,26 @@ app.factory('auth', ['$http', '$window', function ($http, $window) {
     return $window.localStorage['mean-reddit-token'];
   };
 
+  auth.isLoggedIn = function () {
+    var token = auth.getToken();
+
+    if (token) {
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+      return payload.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  };
+
+  auth.currentUser = function () {
+    if (auth.isLoggedIn()) {
+      var token = auth.getToken();
+      var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+      return payload.username;
+    }
+  };
   return auth;
 }]);
 
