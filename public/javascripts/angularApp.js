@@ -6,6 +6,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
       url: '/home',
       templateUrl: '/home.html',
       controller: 'MainCtrl',
+    })
+    .state('posts', {
+      url: '/posts/{id}',
+      templateUrl: '/posts.html',
+      controller: 'PostsCtrl'
     });
 
     $urlRouterProvider.otherwise('home');
@@ -21,5 +26,9 @@ app.factory('posts', [function () {
 
 app.controller('MainCtrl', ['$scope','posts', function ($scope, posts) {
   $scope.posts = posts.posts;
+
+}]);
+
+app.controller('PostsCtrl', ['$scope', 'posts', function ($scope, posts) {
 
 }]);
