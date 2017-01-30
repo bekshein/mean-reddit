@@ -57,7 +57,7 @@ router.get('/posts', function (req, res, next) {
 });
 
 // create and save new post
-router.post('/posts', function (req, res, next) {
+router.post('/posts', auth, function (req, res, next) {
   var newPost = new Post(req.body);
 
   newPost.save(function (err, post) {
@@ -103,7 +103,7 @@ router.get('/posts/:post', function (req, res) {
 });
 
 // update post by id using upvote method from Post model (route hits server, runs method and returns back to client)
-router.put('/posts/:post/upvote', function (req, res, next) {
+router.put('/posts/:post/upvote', auth, function (req, res, next) {
   req.post.upvote(function (err, post) {
     if (err) { return next(err); }
 
@@ -112,7 +112,7 @@ router.put('/posts/:post/upvote', function (req, res, next) {
 });
 
 // update post by id using downvote method from Post model (route hits server, runs method and returns back to client)
-router.put('/posts/:post/downvote', function (req, res, next) {
+router.put('/posts/:post/downvote', auth, function (req, res, next) {
   req.post.downvote(function (err, post) {
     if (err) { return next(err); }
 
@@ -121,7 +121,7 @@ router.put('/posts/:post/downvote', function (req, res, next) {
 });
 
 // create and save new comment on referenced post by id
-router.post('/posts/:post/comments', function (req, res, next) {
+router.post('/posts/:post/comments', auth, function (req, res, next) {
   var newComment = new Comment(req.body);
   newComment.post = req.post;
 
@@ -138,7 +138,7 @@ router.post('/posts/:post/comments', function (req, res, next) {
 });
 
 // update comment by id using upvote method from Comment model (route hits server, runs method and returns back to client)
-router.put('/posts/:post/comments/:comment/upvote', function (req, res, next) {
+router.put('/posts/:post/comments/:comment/upvote', auth, function (req, res, next) {
   req.comment.upvote(function (err, comment) {
     if (err) { return next(err); }
 
@@ -147,7 +147,7 @@ router.put('/posts/:post/comments/:comment/upvote', function (req, res, next) {
 });
 
 // update comment by id using downvote method from Comment model (route hits server, runs method and returns back to client)
-router.put('/posts/:post/comments/:comment/downvote', function (req, res, next) {
+router.put('/posts/:post/comments/:comment/downvote', auth, function (req, res, next) {
   req.comment.downvote(function (err, comment) {
     if (err) { return next(err); }
 
