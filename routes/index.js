@@ -19,4 +19,14 @@ router.get('/posts', function (req, res, next) {
   });
 });
 
+// create and save new post
+router.post('/posts', function (req, res, next) {
+  var newPost = new Post(req.body);
+
+  newPost.save(function (err, post) {
+    if (err) { return next(err); }
+
+    res.json(post);
+  });
+});
 module.exports = router;
