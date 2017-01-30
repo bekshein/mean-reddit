@@ -62,4 +62,12 @@ router.put('/posts/:post/upvote', function (req, res, next) {
   });
 });
 
+// update post by id using downvote method from Post model (route hits server, runs method and returns back to client)
+router.put('/posts/:post/downvote', function (req, res, next) {
+  req.post.downvote(function (err, post) {
+    if (err) { return next(err); }
+
+    res.json(post);
+  });
+});
 module.exports = router;
