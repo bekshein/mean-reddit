@@ -70,4 +70,21 @@ router.put('/posts/:post/downvote', function (req, res, next) {
     res.json(post);
   });
 });
+
+// create and save new comment on referenced post by id
+router.post('/posts/:post/comments', function (req, res, next) {
+  var newComment = new Comment(req.body);
+  newComment.post = req.post;
+
+  newComment.save(function (err, comment) {
+    if (err) { return next(err); }
+
+    req.post.comments.push(comment);
+    req.post.save(function (err, post) {
+      if (err) { return next(err); }
+
+      res.json(comment);
+    });
+  });
+});
 module.exports = router;
