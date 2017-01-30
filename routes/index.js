@@ -1,8 +1,10 @@
 var express  = require('express'),
     router   = express.Router(),
     mongoose = require('mongoose'),
+    passport = require('passport'),
     Post     = mongoose.model('Post'),
     Comment  = mongoose.model('Comment'),
+    User     = mongoose.model('User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
