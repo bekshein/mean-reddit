@@ -84,6 +84,24 @@
         </div>
       </div>
     </script>
+
+    <script type="text/ng-template" id="/register.html">
+      <div ng-show="error" class="alert alert-danger row">
+        <span>{{ error.message }}</span>
+      </div>
+
+      <form ng-submit="register()">
+        <h3>Register</h3>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" ng-model="user.username" />
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
     </script>
   </body>
 </html>
