@@ -11,6 +11,9 @@ var express      = require('express'),
 
 mongoose.connect(MONGOURI + "/" + dbname);
 
+// mongoose model registers
+require('./models/post');
+require('./models/comment');
 // all routes
 var routes = require('./routes/index');
 
