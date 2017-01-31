@@ -8,25 +8,34 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
     <script type="text/javascript" src="/javascripts/angularApp.js"></script>
   </head>
   <body>
-    <header class="navbar navbar-default navbar-fixed-top" ng-controller="NavCtrl" role="navigation">
-      <div class="navbar-inner">
+    <header ng-controller="NavCtrl">
+      <nav class="navbar navbar-default navbar-fixed-top navbar-inner" role="navigation">
         <div class="container">
-          <div id="logo" class="navbar-brand">
-            <a href="/#/home">MEAN Reddit</a>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div id="logo" class="navbar-brand">
+              <a href="/#/home">MEAN Reddit</a>
+            </div>
           </div>
-          <nav class="collapse navbar-collapse navbar-ex1-collapse">
+          <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
             <ul class="nav navbar-nav navbar-right">
               <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
               <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
               <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
               <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
             </ul>
-          </nav>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
 
     <div id="main_content" class="container">
