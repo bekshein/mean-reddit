@@ -5,12 +5,12 @@ var express      = require('express'),
     logger       = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser   = require('body-parser'),
-    MONGOURI     = process.env.MONGOLAB_URI || "mongodb://localhost:27017",
+    MONGODBURI   = process.env.MONGODB_URI || "mongodb://localhost:27017",
     dbname       = "reddit",
     mongoose     = require('mongoose'),
     passport     = require('passport');
 
-mongoose.connect(MONGOURI + "/" + dbname);
+mongoose.connect(MONGODBURI + "/" + dbname);
 
 // mongoose model registers
 require('./models/post');
