@@ -1,4 +1,4 @@
-var app = angular.module('meanReddit', ['ui.router']);
+var app = angular.module('meanReddit', ['ui.router', 'ui.bootstrap']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -178,6 +178,8 @@ app.controller('NavCtrl', ['$scope', 'auth', function ($scope, auth) {
   $scope.isLoggedIn = auth.isLoggedIn;
   $scope.currentUser = auth.currentUser;
   $scope.logOut = auth.logOut;
+
+  $scope.isNavCollapsed = true;
 }]);
 
 app.controller('MainCtrl', ['$scope', 'posts', 'auth', function ($scope, posts, auth) {
