@@ -46,9 +46,9 @@
 
     <script type="text/ng-template" id="/home.html">
       <div class="link row clearfix" ng-repeat="post in posts | orderBy: '-upvotes'">
-        <h3>
+        <h3 class="title">
           <a href="#/posts/{{post._id}}">{{post.title}}</a>
-          <small ng-show="post.author" class="author">posted by {{post.author}}</small>
+          <small ng-show="post.author" class="author">posted by <strong>{{post.author}}</strong></small>
         </h3>
 
         <div class="btn-group">
@@ -87,10 +87,10 @@
 
     <script type="text/ng-template" id="/posts.html">
       <div class="page-header">
-        <h2>
+        <h2 class="title">
           <a ng-show="post.link" href="{{post.link}}" target="_blank">{{post.title}}</a>
           <span ng-hide="post.link">{{post.title}}</span><br>
-          <small ng-show="post.author" class="author">posted by {{post.author}}</small>
+          <small ng-show="post.author" class="author">posted by <strong>{{post.author}}</strong></small>
         </h2>
       </div>
 
